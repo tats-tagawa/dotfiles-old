@@ -41,7 +41,7 @@ hs.hotkey.bind(hyper, 'k', function()
 end)
 
 -- Force mute input device
-hs.hotkey.bind(hyper, 'i', function() 
+hs.hotkey.bind(hyper, 'x', function() 
   local input = hs.audiodevice.defaultInputDevice()
   input:setInputMuted(not input:inputMuted())
 end)
@@ -54,64 +54,55 @@ end)
 --------------------------
 -- Application Launcher --
 --------------------------
-hs.hotkey.bind(hyper, 'space', function()
-  hs.application.launchOrFocus('iTerm')
+
+local appBindings = {
+  { key = 'space', app = 'iTerm' },
+  { key = 'a', app = '' },
+  { key = 'b', app = 'Firefox' },
+  { key = 'c', app = 'Google Chrome' },
+  { key = 'd', app = '' },
+  { key = 'e', app = 'Spark' },         -- Email
+  { key = 'f', app = 'Finder' },
+  { key = 'g', app = '' },
+  { key = 'h', app = '' },
+  { key = 'i', app = 'IINA' },
+  { key = 'j', app = '' },
+  -- Used to raise hammerspoon console
+  -- { key = 'k', app = '' },
+  { key = 'l', app = '' },
+  { key = 'm', app = 'Spotify' },       -- Music
+  { key = 'n', app = '' },
+  { key = 'o', app = '' },
+  { key = 'p', app = '' },
+  { key = 'q', app = '' },
+  -- Used to reload hammerspoon config
+  -- { key = 'r', app = '' },
+  { key = 's', app = 'Safari' },
+  { key = 't', app = '' },
+  { key = 'u', app = '' },
+  { key = 'v', app = 'Visual Studio Code' },
+  -- hyper-w launches system wifi diagnostics. Remapped to hyper-f24 in Karabiner-Elements
+  { key = 'f20', app = 'Microsoft Word' },
+  -- Used to force mute mic
+  -- { key = 'x', app = '' },
+  { key = 'y', app = '' },
+  { key = 'z', app = '' },
+  { key = '1', app = '' },
+  { key = '2', app = '' },
+  { key = '3', app = '' },
+  { key = '4', app = '' },
+  { key = '5', app = '' },
+  { key = '6', app = '' },
+  { key = '7', app = '' },
+  { key = '8', app = '' },
+  { key = '9', app = '' },
+  { key = '0', app = '' },
+}
+
+hs.fnutils.each(appBindings, function(object)
+  if object.app ~= '' then
+    hs.hotkey.bind(hyper, object.key, function()
+      hs.application.launchOrFocus(object.app)
+    end)
+  end
 end)
-
-hs.hotkey.bind(hyper, 'b', function()
-  hs.application.launchOrFocus('Firefox')
-end)
-
-hs.hotkey.bind(hyper, 'c', function()
-  hs.application.launchOrFocus('Google Chrome')
-end)
-
-hs.hotkey.bind(hyper, 'e', function()
-  hs.application.launchOrFocus('Spark')
-end)
-
-hs.hotkey.bind(hyper, 'f', function()
-  hs.application.launchOrFocus('Finder')
-end)
-
-hs.hotkey.bind(hyper, 'n', function()
-  hs.application.launchOrFocus('nvALT')
-end)
-
-hs.hotkey.bind(hyper, 's', function()
-  hs.application.launchOrFocus('Safari')
-end)
-
-hs.hotkey.bind(hyper, 'v', function()
-  hs.application.launchOrFocus('Visual Studio Code')
-end)
-
---hs.hotkey.bind(hyper, 'up', function()
-  --local currentWindow = hs.window.focusedWindow()
-  --hs.application.launchOrFocus('Firefox')
-  --hs.eventtap.keyStroke({'ctrl'}, 'u')
-  --hs.window.focus(currentWindow)
---end)
-
---hs.hotkey.bind(hyper, 'down', function()
-  --local currentWindow = hs.window.focusedWindow()
-  --hs.application.launchOrFocus('Firefox')
-  --hs.eventtap.keyStroke({'ctrl'}, 'd')
-  --hs.window.focus(currentWindow)
---end)
-
---hs.hotkey.bind(hyper, 'right', function()
-  --local currentWindow = hs.window.focusedWindow()
-  --hs.application.launchOrFocus('Firefox')
-  --hs.eventtap.keyStroke({}, ']')
-  --hs.eventtap.keyStroke({}, ']')
-  --hs.window.focus(currentWindow)
---end)
-
---hs.hotkey.bind(hyper, 'left', function()
-  --local currentWindow = hs.window.focusedWindow()
-  --hs.application.launchOrFocus('Firefox')
-  --hs.eventtap.keyStroke({}, '[')
-  --hs.eventtap.keyStroke({}, '[')
-  --hs.window.focus(currentWindow)
---end)
