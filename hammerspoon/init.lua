@@ -1,7 +1,7 @@
 require 'caffeine'
 local statusMessage = require 'status-message'
 local windowManager = require 'window-manager'
-local inspect = require 'lib.inspect'
+local inspect = require 'hs.inspect'
 local hf = require 'helper-functions'
 
 local mash = {'alt', 'cmd', 'ctrl'}
