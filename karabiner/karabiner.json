@@ -59,6 +59,26 @@
             ]
           },
           {
+            "description": "Change Command-Shift-Option-Control + W to Command-Shift-Option-Control + f20",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "w",
+                  "modifiers": {
+                    "mandatory": ["command", "shift", "option", "control"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "f20",
+                    "modifiers": ["command", "shift", "option", "control"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "Disable Command-Shift-Option-Control-Period (.)",
             "manipulators": [
               {
