@@ -15,9 +15,10 @@
         },
         "rules": [
           {
-            "description": "Post escape if caps is pressed alone, left_ctrl otherwise",
+            "description": "Post Escape if Caps Lock is pressed alone, Left Control otherwise",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "caps_lock",
                   "modifiers": {
@@ -33,15 +34,15 @@
                   {
                     "key_code": "escape"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
           {
-            "description": "Change left_control to command+control+option+shift.",
+            "description": "Change Left Control to Command-Shift-Option-Control",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "left_control",
                   "modifiers": {
@@ -53,8 +54,7 @@
                     "key_code": "left_shift",
                     "modifiers": ["left_command", "left_control", "left_option"]
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -79,7 +79,7 @@
             ]
           },
           {
-            "description": "Disable Command-Shift-Option-Control-Period (.)",
+            "description": "Disable Command-Shift-Option-Control + Period (.)",
             "manipulators": [
               {
                 "type": "basic",
@@ -93,7 +93,7 @@
             ]
           },
           {
-            "description": "Disable Command-Shift-Option-Control-Comma (,)",
+            "description": "Disable Command-Shift-Option-Control + Comma (,)",
             "manipulators": [
               {
                 "type": "basic",
@@ -107,7 +107,7 @@
             ]
           },
           {
-            "description": "Disable Command-Shift-Option-Control-Slash (/)",
+            "description": "Disable Command-Shift-Option-Control + Slash (/)",
             "manipulators": [
               {
                 "type": "basic",
