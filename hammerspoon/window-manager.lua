@@ -182,6 +182,61 @@ windowMode:bind({}, '2', function()
   win:setFrame(f)
 end)
 
+-- Quarter top left
+windowMode:bind({}, 'q', function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w * (1/2)
+  f.h = max.h * (1/2)
+  win:setFrame(f)
+end)
+
+-- Quarter bottom left
+windowMode:bind({}, 'z', function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x
+  f.y = max.y + (max.h * 1/2)
+  f.w = max.w * (1/2)
+  f.h = max.h * (1/2)
+  win:setFrame(f)
+end)
+
+-- Quarter top right
+windowMode:bind({}, 'e', function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x + (max.w * 1/2)
+  f.y = max.y
+  f.w = max.w * (1/2)
+  f.h = max.h * (1/2)
+  win:setFrame(f)
+end)
+
+-- Quarter bottom right
+windowMode:bind({}, 'c', function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x + (max.w * 1/2)
+  f.y = max.y + (max.h * 1/2)
+  f.w = max.w * (1/2)
+  f.h = max.h * (1/2)
+  win:setFrame(f)
+end)
 local increment = hs.screen.mainScreen():frame().w * 0.05
 
 -- Increase width left
@@ -202,7 +257,7 @@ windowMode:bind({}, 'a', function()
 end)
 
 -- Decrease width left
-windowMode:bind({}, 'q', function()
+windowMode:bind({}, 's', function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   hs.alert('Calculated ' .. f.w - increment)
