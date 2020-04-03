@@ -81,7 +81,7 @@ local appBindings = {
   { key = 't', app = '' },
   { key = 'u', app = '' },
   { key = 'v', app = 'Visual Studio Code' },
-  -- hyper-w launches system wifi diagnostics. Remapped to hyper-f24 in Karabiner-Elements
+  -- hyper-w launches system wifi diagnostics. Remapped to hyper-f20 in Karabiner-Elements
   { key = 'f20', app = 'Microsoft Word' },
   -- Used to force mute mic
   -- { key = 'x', app = '' },
