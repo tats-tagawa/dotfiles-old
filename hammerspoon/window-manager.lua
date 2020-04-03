@@ -5,17 +5,15 @@ local hyper = {'alt', 'cmd', 'ctrl', 'shift'}
 
 local windowMode = hs.hotkey.modal.new()
 
-local inWindowModeState = false
+-- Enter modal with hyper-return, exit with just return
 hs.hotkey.bind(hyper, 'return', function() 
-  if not inWindowModeState then
-    windowMode:enter()
-    inWindowModeState = true
-  else
-    windowMode:exit()
-    inWindowModeState = false
-  end
+  windowMode:enter()
+end)
+windowMode:bind({}, 'return', function()
+  windowMode:exit()
 end)
 
+-- Show if in window mode
 local windowStatusMessage = statusMessage.new('Window Mode')
 windowMode.entered = function() 
   windowStatusMessage:show()
