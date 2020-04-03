@@ -79,7 +79,7 @@
             ]
           },
           {
-            "description": "Disable Command-Shift-Option-Control + Period (.)",
+            "description": "Disable Command-Shift-Option-Control + Period (.) to Command-Shift-Option-Control + f17",
             "manipulators": [
               {
                 "type": "basic",
@@ -88,12 +88,18 @@
                   "modifiers": {
                     "mandatory": ["command", "shift", "option", "control"]
                   }
-                }
+                },
+                "to": [
+                  {
+                    "key_code": "f17",
+                    "modifiers": ["command", "shift", "option", "control"]
+                  }
+                ]
               }
             ]
           },
           {
-            "description": "Disable Command-Shift-Option-Control + Comma (,)",
+            "description": "Disable Command-Shift-Option-Control + Comma (,) to Command-Shift-Option-Control + f18",
             "manipulators": [
               {
                 "type": "basic",
@@ -102,12 +108,18 @@
                   "modifiers": {
                     "mandatory": ["command", "shift", "option", "control"]
                   }
-                }
+                },
+                "to": [
+                  {
+                    "key_code": "f18",
+                    "modifiers": ["command", "shift", "option", "control"]
+                  }
+                ]
               }
             ]
           },
           {
-            "description": "Disable Command-Shift-Option-Control + Slash (/)",
+            "description": "Disable Command-Shift-Option-Control + Slash (/) to Command-Shift-Option-Control + f19",
             "manipulators": [
               {
                 "type": "basic",
@@ -116,7 +128,13 @@
                   "modifiers": {
                     "mandatory": ["command", "shift", "option", "control"]
                   }
-                }
+                },
+                "to": [
+                  {
+                    "key_code": "f19",
+                    "modifiers": ["command", "shift", "option", "control"]
+                  }
+                ]
               }
             ]
           }
