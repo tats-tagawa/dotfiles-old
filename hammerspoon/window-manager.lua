@@ -25,218 +25,56 @@ windowMode.exited = function()
   windowStatusMessage:hide()
 end
 
--- 50% width, left
-windowMode:bind({}, 'j', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+-- set where to move window and what size
+-- x-position, y-position, width, height where 1 = screen size
+-- x and y-position are from 0 (top left) to 1 (bottom right)
+-- width and height are from 0 (minimum size) to 1 (maximum size)
+function moveWindow(x, y, w, h)
+  return function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
 
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
-end)
+    f.x = max.x + (max.w * x)
+    f.y = max.h * y
+    f.w = max.w * w
+    f.h = max.h * h
+    win:setFrame(f)  
+  end
+end
 
--- 50% width, right
-windowMode:bind({}, 'l', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+-- Full screen
+windowMode:bind({}, 'k', moveWindow(0, 0, 1, 1))
 
-  f.x = max.x + (max.w / 2)
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
-end)
+-- 1/2 width, left
+windowMode:bind({}, 'j', moveWindow(0, 0, 0.5, 1))
+-- 1/2 width, right
+windowMode:bind({}, 'l', moveWindow(0.5, 0, 0.5, 1))
 
 -- 1/3 width, left
-windowMode:bind({}, '7', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 3
-  f.h = max.h
-  win:setFrame(f)
-end)
-
+windowMode:bind({}, '7', moveWindow(0, 0, 0.33, 1))
 -- 1/3 width, center
-windowMode:bind({}, '8', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 3)
-  f.y = max.y
-  f.w = max.w / 3
-  f.h = max.h
-  win:setFrame(f)
-end)
-
+windowMode:bind({}, '8', moveWindow(0.33, 0, 0.33, 1))
 -- 1/3 width, right
-windowMode:bind({}, '9', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w * (2 / 3))
-  f.y = max.y
-  f.w = max.w / 3
-  f.h = max.h
-  win:setFrame(f)
-end)
-
------
+windowMode:bind({}, '9', moveWindow(0.66, 0, 0.33, 1))
 
 -- 2/3 width, left half
-windowMode:bind({}, 'u', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w * (2 / 3)
-  f.h = max.h
-  win:setFrame(f)
-end)
-
+windowMode:bind({}, 'u', moveWindow(0, 0, 0.66, 1))
 -- 2/3 width, right half
-windowMode:bind({}, 'o', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 3)
-  f.y = max.y
-  f.w = max.w * (2/3)
-  f.h = max.h
-  win:setFrame(f)
-end)
-
+windowMode:bind({}, 'o', moveWindow(0.33, 0, 0.66, 1))
 -- 2/3 width, centered
-windowMode:bind({}, 'i', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 6)
-  f.y = max.y
-  f.w = max.w * (2/3)
-  f.h = max.h
-  win:setFrame(f)
-end)
------
-
--- 100% width
-windowMode:bind({}, 'k', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h
-  win:setFrame(f)
-end)
-
--- 2/3 height, top
-windowMode:bind({}, '1', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h * (2/3)
-  win:setFrame(f)
-end)
-
--- 1/3 height, bottom
-windowMode:bind({}, '2', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y + (max.h - (max.h / 3))
-  f.w = max.w
-  f.h = max.h * (1/3)
-  win:setFrame(f)
-end)
+windowMode:bind({}, 'i', moveWindow(0.166, 0, 0.66, 1))
 
 -- Quarter top left
-windowMode:bind({}, 'q', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w * (1/2)
-  f.h = max.h * (1/2)
-  win:setFrame(f)
-end)
-
--- Quarter bottom left
-windowMode:bind({}, 'z', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y + (max.h * 1/2)
-  f.w = max.w * (1/2)
-  f.h = max.h * (1/2)
-  win:setFrame(f)
-end)
-
+windowMode:bind({}, 'q', moveWindow(0, 0, 0.5, 0.5))
 -- Quarter top right
-windowMode:bind({}, 'e', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w * 1/2)
-  f.y = max.y
-  f.w = max.w * (1/2)
-  f.h = max.h * (1/2)
-  win:setFrame(f)
-end)
-
+windowMode:bind({}, 'e', moveWindow(0.5, 0, 0.5, 0.5))
 -- Quarter bottom right
-windowMode:bind({}, 'c', function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+windowMode:bind({}, 'c', moveWindow(0.5, 0.5, 0.5, 0.5))
+-- Quarter bottom left
+windowMode:bind({}, 'z', moveWindow(0, 0.5, 0.5, 0.5))
 
-  f.x = max.x + (max.w * 1/2)
-  f.y = max.y + (max.h * 1/2)
-  f.w = max.w * (1/2)
-  f.h = max.h * (1/2)
-  win:setFrame(f)
-end)
 local increment = hs.screen.mainScreen():frame().w * 0.05
 
 -- Increase width left
