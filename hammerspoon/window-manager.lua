@@ -1,14 +1,13 @@
-local statusMessage = require 'status-message'
+local window = require('hs.window')
+local screen = require('hs.screen')
+local hotkey = require('hs.hotkey')
+local statusMessage = require('status-message')
 
 local mash = {'alt', 'cmd', 'ctrl'}
 local hyper = {'alt', 'cmd', 'ctrl', 'shift'}
 
-local windowMode = hs.hotkey.modal.new()
-
 -- Enter modal with hyper-return, exit with just return
-hs.hotkey.bind(hyper, 'return', function() 
-  windowMode:enter()
-end)
+local windowMode = hotkey.modal.new(hyper, 'return')
 windowMode:bind({}, 'return', function()
   windowMode:exit()
 end)
@@ -29,7 +28,7 @@ end
 -- width and height are from 0 (minimum size) to 1 (maximum size)
 function moveWindow(x, y, w, h)
   return function()
-    local win = hs.window.focusedWindow()
+    local win = window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
@@ -73,14 +72,13 @@ windowMode:bind({}, 'c', moveWindow(0.5, 0.5, 0.5, 0.5))
 -- Quarter bottom left
 windowMode:bind({}, 'z', moveWindow(0, 0.5, 0.5, 0.5))
 
-local increment = hs.screen.mainScreen():frame().w * 0.05
+local increment = screen.mainScreen():frame().w * 0.05
 
 -- Increase width left
 windowMode:bind({}, 'a', function()
-  local win = hs.window.focusedWindow()
+  local win = window.focusedWindow()
   local f = win:frame()
   if f.x ~= 0 then
-    hs.alert(f.x)
     if f.x >= increment then
       f.x = f.x - increment
       f.w = f.w + increment
@@ -94,10 +92,8 @@ end)
 
 -- Decrease width left
 windowMode:bind({}, 's', function()
-  local win = hs.window.focusedWindow()
+  local win = window.focusedWindow()
   local f = win:frame()
-  hs.alert('Calculated ' .. f.w - increment)
-  hs.alert('Width ' .. f.w)
   if f.w - increment ~= f.w then
     f.x = f.x + increment
     f.w = f.w - increment
@@ -107,7 +103,7 @@ end)
 
 -- Increase width right
 windowMode:bind({}, 'd', function()
-  local win = hs.window.focusedWindow()
+  local win = window.focusedWindow()
   local f = win:frame()
   f.w = f.w + increment
   win:setFrame(f)
@@ -115,10 +111,10 @@ end)
 
 -- Move to right screen
 windowMode:bind({}, 'Right', function()
-  hs.window.focusedWindow():moveOneScreenEast()
+  window.focusedWindow():moveOneScreenEast()
 end)
 
 -- Move to left screen
 windowMode:bind({}, 'Left', function()
-  hs.window.focusedWindow():moveOneScreenWest()
+  window.focusedWindow():moveOneScreenWest()
 end)

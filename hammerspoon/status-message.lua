@@ -1,14 +1,15 @@
-local drawing = require 'hs.drawing'
-local geometry = require 'hs.geometry'
-local screen = require 'hs.screen'
-local styledtext = require 'hs.styledtext'
+local drawing = require('hs.drawing')
+local geometry = require('hs.geometry')
+local screen = require('hs.screen')
+local styledtext = require('hs.styledtext')
+local timer = require('hs.timer')
 
 local frame = screen.mainScreen():frame()
 
 local statusMessage = {}
 
 statusMessage.new = function(message, textSize)
-  textSize = textSize or 24
+  textSize = textSize or 30
   local styledTextAttributes = {
     font = { size = textSize },
     color = { white = 1 }
@@ -50,7 +51,7 @@ statusMessage.new = function(message, textSize)
       background:setStroke(true):setStrokeColor({ white = 1 }):setStrokeWidth(6)
       background:show()
       text:show()
-      hs.timer.delayed.new(4, function()
+      timer.delayed.new(4, function()
         background:hide()
         text:hide()
       end):start()
