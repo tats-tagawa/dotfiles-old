@@ -1,14 +1,18 @@
-require 'caffeine'
-local statusMessage = require 'status-message'
-local windowManager = require 'window-manager'
-local inspect = require 'hs.inspect'
-local hf = require 'helper-functions'
+require('caffeine')
+require('window-manager')
+require('spot-mouse')
+local inspect = require('hs.inspect')
+local window = require('hs.window')
+local hotkey = require('hs.hotkey')
+local application = require('hs.application')
+local statusMessage = require('status-message')
+local hf = require('helper-functions')
 
 local mash = {'alt', 'cmd', 'ctrl'}
 local hyper = {'alt', 'cmd', 'ctrl', 'shift'}
 
 -- Disable animations
-hs.window.animationDuration = 0
+window.animationDuration = 0
 
 -- Reload init.lua automatically on config changes
 function reloadConfig(files)
@@ -27,27 +31,27 @@ end
 hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/init.lua', reloadConfig):start()
 hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/window-manager.lua', reloadConfig):start()
 hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/status-message.lua', reloadConfig):start()
-statusMessage.new('Why a spoon, cousin? Why not an axe?', 40):alert()
+statusMessage.new('Why a spoon, cousin? Why not an axe?'):alert()
 -- hs.notify.new({title='Hammerspoon', informativeText='Why a spoon, cousin? Why not an axe?'}):send()
 
 -- Reload config manually
-hs.hotkey.bind(hyper, 'r', function()
+hotkey.bind(hyper, 'r', function()
   hs.reload()
 end)
 
 -- Raise Hammerspoon console to front
-hs.hotkey.bind(hyper, 'k', function()
+hotkey.bind(hyper, 'k', function()
   hs.console.hswindow():raise()
 end)
 
 -- Force mute input device
-hs.hotkey.bind(hyper, 'x', function() 
+hotkey.bind(hyper, 'x', function() 
   local input = hs.audiodevice.defaultInputDevice()
   input:setInputMuted(not input:inputMuted())
 end)
 
 -- Switching windows through hints
-hs.hotkey.bind(hyper, '\\', function()
+hotkey.bind(hyper, '\\', function()
   hs.hints.windowHints()
 end)
 
@@ -101,8 +105,8 @@ local appBindings = {
 
 hs.fnutils.each(appBindings, function(object)
   if object.app ~= '' then
-    hs.hotkey.bind(hyper, object.key, function()
-      hs.application.launchOrFocus(object.app)
+    hotkey.bind(hyper, object.key, function()
+      application.launchOrFocus(object.app)
     end)
   end
 end)
