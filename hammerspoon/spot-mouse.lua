@@ -28,23 +28,29 @@ local circle = function(color)
   }
 end
 
+local mouseEvents = {
+ eventType.leftMouseDown,
+ eventType.leftMouseUp,
+ eventType.mouseMoved,
+ eventType.leftMouseDragged,
+}
 -- Watch mouse movements and mouse clicks
-local spotMouse = eventtap.new({ eventType.mouseMoved, eventType.leftMouseDown }, function(event)
-  -- Event type 1 is mouse click
+local spotMouse = eventtap.new(mouseEvents, function(event)
+  -- Left mouse down
   if event:getType() == 1 then
-    -- Remove previous circle before drawing new one
     a:removeElement(1)
-    -- Change circle color to red and then change back to original color
     a:appendElements(circle('#ff0000')) 
-    timer.doAfter(0.1, function()
-      a:removeElement(1)
-      a:appendElements(circle('#000000'))
-    end)
-  -- Event type 5 is mouse movement
-  elseif event:getType() == 5 then
-    -- Remove previous circle before drawing new one
+  -- Left mouse up
+  elseif event:getType() == 2 then
     a:removeElement(1)
     a:appendElements(circle('#000000'))
+  -- Mouse moved
+  elseif event:getType() == 5 then
+    a:removeElement(1)
+    a:appendElements(circle('#000000'))
+  elseif event:getType() == 6 then
+    a:removeElement(1)
+    a:appendElements(circle('#ff0000'))
   end
 end)
 
@@ -53,7 +59,7 @@ local spotMode = hotkey.modal.new(hyper, 39)
 
 -- Create new canvas and draw circle around mouse as soon as modal is activated
 spotMode.entered = function()
-  statusMessage.new('Spotting Mouse....'):alert()
+  statusMessage.new('Spotting Mouse'):alert()
   a = c.new({x = 0, y = 0, w = frame.w, h = frame.h }):show()
   a:appendElements(circle('#000000'))
   spotMouse:start()
@@ -61,7 +67,7 @@ end
 
 -- Exit modal, stop watching events and delete canvas
 spotMode:bind({}, 39, function()
-  statusMessage.new('Stop Spotting Mouse....'):alert()
+  statusMessage.new('Stopped Spotting Mouse'):alert()
   spotMode:exit()
   spotMouse:stop()
   a:delete()
