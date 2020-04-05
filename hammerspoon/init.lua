@@ -10,9 +10,6 @@ local statusMessage = require('status-message')
 local mash = {'alt', 'cmd', 'ctrl'}
 local hyper = {'alt', 'cmd', 'ctrl', 'shift'}
 
--- Disable animations
-window.animationDuration = 0
-
 -- Reload init.lua automatically on config changes
 function reloadConfig(files)
   doReload = false
@@ -63,7 +60,7 @@ local appBindings = {
   { key = 'a', app = '' },
   { key = 'b', app = 'Firefox' },
   { key = 'c', app = 'Google Chrome' },
-  { key = 'd', app = '' },
+  { key = 'd', app = 'Dash' },
   { key = 'e', app = 'Spark' },         -- Email
   { key = 'f', app = 'Finder' },
   { key = 'g', app = '' },

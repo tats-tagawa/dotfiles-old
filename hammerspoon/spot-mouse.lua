@@ -28,6 +28,7 @@ local circle = function(color)
   }
 end
 
+-- Mouse events to watch
 local mouseEvents = {
  eventType.leftMouseDown,
  eventType.leftMouseUp,
@@ -48,6 +49,7 @@ local spotMouse = eventtap.new(mouseEvents, function(event)
   elseif event:getType() == 5 then
     a:removeElement(1)
     a:appendElements(circle('#000000'))
+  -- Left mouse down and dragged
   elseif event:getType() == 6 then
     a:removeElement(1)
     a:appendElements(circle('#ff0000'))

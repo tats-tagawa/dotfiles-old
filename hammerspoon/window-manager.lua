@@ -5,6 +5,9 @@ local statusMessage = require('status-message')
 
 local hyper = {'alt', 'cmd', 'ctrl', 'shift'}
 
+-- Disable animations
+window.animationDuration = 0
+
 -- Enter modal with hyper-return, exit with just return
 local windowMode = hotkey.modal.new(hyper, 'return')
 windowMode:bind({}, 'return', function()
