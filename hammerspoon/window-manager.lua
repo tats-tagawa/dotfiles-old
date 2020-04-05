@@ -3,7 +3,6 @@ local screen = require('hs.screen')
 local hotkey = require('hs.hotkey')
 local statusMessage = require('status-message')
 
-local mash = {'alt', 'cmd', 'ctrl'}
 local hyper = {'alt', 'cmd', 'ctrl', 'shift'}
 
 -- Enter modal with hyper-return, exit with just return
