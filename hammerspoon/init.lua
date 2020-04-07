@@ -1,10 +1,12 @@
 require('caffeine')
 require('window-manager')
 require('spot-mouse')
-local inspect = require('hs.inspect')
-local window = require('hs.window')
-local hotkey = require('hs.hotkey')
 local application = require('hs.application')
+local fnutils = require('hs.fnutils')
+local hotkey = require('hs.hotkey')
+local inspect = require('hs.inspect')
+local pathwatcher = require('hs.pathwatcher')
+local window = require('hs.window')
 local statusMessage = require('status-message')
 
 local mash = {'alt', 'cmd', 'ctrl'}
@@ -24,9 +26,9 @@ function reloadConfig(files)
 end
 
 -- Set paths to watch for changes
-hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/init.lua', reloadConfig):start()
-hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/window-manager.lua', reloadConfig):start()
-hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/status-message.lua', reloadConfig):start()
+pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/init.lua', reloadConfig):start()
+pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/window-manager.lua', reloadConfig):start()
+pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/status-message.lua', reloadConfig):start()
 statusMessage.new('Why a spoon, cousin? Why not an axe?'):alert()
 -- hs.notify.new({title='Hammerspoon', informativeText='Why a spoon, cousin? Why not an axe?'}):send()
 
@@ -99,7 +101,7 @@ local appBindings = {
   { key = '0', app = '' },
 }
 
-hs.fnutils.each(appBindings, function(object)
+fnutils.each(appBindings, function(object)
   if object.app ~= '' then
     hotkey.bind(hyper, object.key, function()
       application.launchOrFocus(object.app)

@@ -1,6 +1,6 @@
-local window = require('hs.window')
-local screen = require('hs.screen')
 local hotkey = require('hs.hotkey')
+local screen = require('hs.screen')
+local window = require('hs.window')
 local statusMessage = require('status-message')
 
 local hyper = {'alt', 'cmd', 'ctrl', 'shift'}

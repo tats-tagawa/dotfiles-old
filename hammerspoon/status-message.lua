@@ -14,6 +14,7 @@ statusMessage.new = function(message, textSize)
     font = { size = textSize },
     color = { white = 1 }
   }
+
   local styledText = styledtext.new(message, styledTextAttributes)
 
   local styledTextSize = drawing.getTextDrawingSize(styledText)

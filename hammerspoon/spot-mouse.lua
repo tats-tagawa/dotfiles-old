@@ -1,12 +1,13 @@
 local c = require('hs.canvas')
 local eventtap = require('hs.eventtap')
-local eventType = eventtap.event.types
-local mouse = require('hs.mouse')
-local timer = require('hs.timer')
 local hotkey = require('hs.hotkey')
+local mouse = require('hs.mouse')
 local screen = require('hs.screen')
-local frame = screen.mainScreen():frame()
+local timer = require('hs.timer')
 local statusMessage = require('status-message')
+
+local eventType = eventtap.event.types
+local frame = screen.mainScreen():frame()
 
 local hyper = {'alt', 'cmd', 'ctrl', 'shift'}
 local a = nil
@@ -35,6 +36,7 @@ local mouseEvents = {
  eventType.mouseMoved,
  eventType.leftMouseDragged,
 }
+
 -- Watch mouse movements and mouse clicks
 local spotMouse = eventtap.new(mouseEvents, function(event)
   -- Left mouse down
