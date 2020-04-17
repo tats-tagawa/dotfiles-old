@@ -33,14 +33,10 @@ statusMessage.new('Why a spoon, cousin? Why not an axe?'):alert()
 -- hs.notify.new({title='Hammerspoon', informativeText='Why a spoon, cousin? Why not an axe?'}):send()
 
 -- Reload config manually
-hotkey.bind(hyper, 'r', function()
-  hs.reload()
-end)
+hotkey.bind(hyper, 'r', hs.reload)
 
 -- Raise Hammerspoon console to front
-hotkey.bind(hyper, 'k', function()
-  hs.console.hswindow():raise()
-end)
+hotkey.bind(hyper, 'k', hs.toggleConsole)
 
 -- Force mute input device
 hotkey.bind(hyper, 'x', function() 
@@ -49,9 +45,7 @@ hotkey.bind(hyper, 'x', function()
 end)
 
 -- Switching windows through hints
-hotkey.bind(hyper, '\\', function()
-  hs.hints.windowHints()
-end)
+hotkey.bind(hyper, '\\', hs.hints.windowHints)
 
 --------------------------
 -- Application Launcher --
