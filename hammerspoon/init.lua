@@ -12,6 +12,9 @@ local statusMessage = require('status-message')
 local mash = {'alt', 'cmd', 'ctrl'}
 local hyper = {'alt', 'cmd', 'ctrl', 'shift'}
 
+-- enable hammerspoon command line tool
+hs.ipc.cliInstall()
+
 -- Reload init.lua automatically on config changes
 function reloadConfig(files)
   doReload = false
