@@ -1,6 +1,7 @@
 require('caffeine')
 require('window-manager')
 require('spot-mouse')
+require('vim')
 local application = require('hs.application')
 local fnutils = require('hs.fnutils')
 local hotkey = require('hs.hotkey')
