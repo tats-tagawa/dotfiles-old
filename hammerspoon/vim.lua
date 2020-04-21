@@ -4,13 +4,15 @@ local screen = require('hs.screen')
 local window = require('hs.window')
 local statusMessage = require('status-message')
 
+local normalStatus = statusMessage.new('Normal Mode')
+
 local normal = hotkey.modal.new({'ctrl'}, '[')
 normal.entered = function()
-  hs.alert('Normal Mode')
+  normalStatus:show()
 end
 
 normal.exited = function()
-  hs.alert('Insert Mode')
+  normalStatus:hide()
 end
 
 normal:bind({}, 'i', function()
@@ -33,10 +35,6 @@ normal:bind({}, 'l', function()
   eventtap.keyStroke({}, 'Right')
 end)
 
-normal:bind({}, '/', function()
-  eventtap.keyStroke({'cmd'}, 'F')
-end)
-
 normal:bind({}, 'e', function()
   eventtap.keyStroke({'alt'}, 'Right')
 end)
@@ -48,4 +46,16 @@ end)
 
 normal:bind({}, 'b', function()
   eventtap.keyStroke({'alt'}, 'Left')
+end)
+
+normal:bind({}, '/', function()
+  eventtap.keyStroke({'cmd'}, 'f')
+end)
+
+normal:bind({}, 'u', function()
+  eventtap.keyStroke({'cmd'}, 'z')
+end)
+
+normal:bind({'ctrol'}, 'r', function()
+  eventtap.keyStroke({'cmd', 'shift'}, 'z')
 end)
