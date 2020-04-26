@@ -41,7 +41,6 @@ end)
 
 normal:bind({}, 'w', function()
   eventtap.keyStroke({'alt'}, 'Right')
-  eventtap.keyStroke({}, 'Right')
 end)
 
 normal:bind({}, 'b', function()
@@ -56,6 +55,14 @@ normal:bind({}, 'u', function()
   eventtap.keyStroke({'cmd'}, 'z')
 end)
 
-normal:bind({'ctrol'}, 'r', function()
+normal:bind({'ctrl'}, 'r', function()
   eventtap.keyStroke({'cmd', 'shift'}, 'z')
+end)
+
+normal:bind({}, '0', function()
+  eventtap.keyStroke({'cmd'}, 'Left')
+end)
+
+normal:bind({'shift'}, '4', function()
+  eventtap.keyStroke({'cmd'}, 'Right')
 end)
