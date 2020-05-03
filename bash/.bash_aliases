@@ -17,3 +17,9 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit -m'
 alias gpom='git push origin master'
+
+# tmux alias
+alias tn='tmux new -s'
+alias tls='tmux ls'
+alias ta='tmux a -t'
+alias tk='tmux kill-session -t'

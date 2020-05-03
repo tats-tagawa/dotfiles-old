@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'morhetz/gruvbox'
 
 " utilities
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'bling/vim-bufferline'
 Plug 'vifm/vifm.vim'
 
@@ -12,5 +13,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " lua
 Plug 'tbastos/vim-lua'
+
+" rust
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
