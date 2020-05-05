@@ -7,6 +7,7 @@ Plug 'morhetz/gruvbox'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'bling/vim-bufferline'
 Plug 'vifm/vifm.vim'
+Plug 'airblade/vim-gitgutter'
 
 " intellisense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
