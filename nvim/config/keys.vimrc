@@ -1,10 +1,6 @@
 " space as leader
 let mapleader=" "
 
-" -------------------------------- vifm --------------------------------
-nnoremap <leader>fm. :Vifm<cr>
-nnoremap <leader>fm~ :Vifm ~<cr>
-
 " ------------------------- buffers and panes --------------------------
 
 " write buffer

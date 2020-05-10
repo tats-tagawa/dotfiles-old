@@ -1,5 +1,5 @@
 " colorscheme
-colorscheme gruvbox
+colorscheme nord
 
 " switch between buffers without closing
 set hidden
